@@ -1,0 +1,57 @@
+/*
+	Implementation of DetectorConstruction.cc
+*/
+
+#include "DetectorConstruction.hh"
+
+//#include "G4Material.hh"
+#include "G4Box.hh"
+#include "G4ThreeVector.hh"
+#include "G4LogicalVolume.hh"
+#include "G4PVPlacement.hh"
+#include "globals.hh"
+
+//#include "G4GeometryManager.hh"
+//#include "G4PhysicalVolumeStore.hh"
+//#include "G4LogicalVolumeStore.hh"
+//#include "G4SolidStore.hh"
+
+//#include "G4VisAttributes"
+//#include "G4Color"
+
+DetectorConstruction::DetectorConstruction() 
+	: logicWorld(0), physWorld(0)
+{
+		
+}
+
+DetectorConstruction::~DetectorConstruction()
+{
+	
+}
+
+G4VPhysicalVolume* Construct()
+{
+		//DefineMaterials();
+		return ConstructGeometry();
+}
+
+//void DefineMaterials()
+//{
+	
+//}
+
+G4VPhysicalVolume* ConstructGeometry()
+{
+// World Description
+	G4double sWorldX = 1.0*m;
+	G4double sWorldY = 1.0*m;
+	G4double sWorldZ = 1.0*m;
+	
+	solidWold = new G4Box("World", sWorldX, sWorldY, sWorldZ);
+	logicWorld = new G4LogicalVolume(solidWorld, defaultMaterial, "World");
+	physWorld = new G4PVPlacement(0, G4ThreeVector(), logicWorld, "World", 0, flase, 0);
+	
+	return physWorld;
+}
+

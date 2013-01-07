@@ -1,0 +1,29 @@
+/gps/particle e-
+/gps/pos/type Point
+/gps/pos/centre 0. 0. 5. cm
+/gps/direction 0. 0. -1.
+/gps/ang/type beam1d
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/point 0.001 0.85
+/gps/hist/point 0.1092 1
+/gps/hist/point 0.218 0.85
+/gps/hist/point 0.327 0.65
+/gps/hist/point 0.436 0.3
+/gps/hist/point 0.545 0
+/gps/hist/inter Lin
+/gps/source/add 1.0
+/gps/particle e-
+/gps/pos/type Point
+/gps/pos/centre 0. 0. 5. cm
+/gps/direction 0. 0. -1.
+/gps/ang/type beam1d
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/point 0.004185 0.85
+/gps/hist/point 0.457037 1
+/gps/hist/point 0.9124 0.85
+/gps/hist/point 1.3686 0.65
+/gps/hist/point 1.8248 0.3
+/gps/hist/point 2.281 0
+/gps/hist/inter Lin

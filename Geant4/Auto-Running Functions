@@ -1,0 +1,9 @@
+Always:
+	The constructor
+	The destructor
+
+In PhysicsList:
+	ConstructParticle()
+	ConstructProcess() (I should make sure to have AddTransportation(); in there.
+
+

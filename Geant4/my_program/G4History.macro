@@ -1,0 +1,28 @@
+/run/verbose 0
+/event/verbose 0
+/process/verbose 0
+/vis/verbose 0
+/tracking/verbose 0
+/vis/open OGL 600x600-0+0
+/vis/sceneHandler/create OGL
+/vis/viewer/create ! ! 600x600-0+0
+/vis/viewer/refresh
+/vis/viewer/set/autoRefresh false
+/vis/drawVolume
+/vis/scene/create
+/vis/scene/add/volume world
+/vis/sceneHandler/attach
+/vis/scene/add/trajectories smooth
+/tracking/storeTrajectory 2
+/vis/scene/notifyHandlers
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 1
+/vis/scene/notifyHandlers scene-0
+/vis/viewer/set/autoRefresh true
+/vis/viewer/refresh
+/gun/particle tau-
+/gun/energy 1 GeV
+/run/beamOn 1
+/vis/scene/notifyHandlers scene-0

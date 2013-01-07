@@ -1,0 +1,6 @@
+void SamplingFraction()
+{
+	Double_t e_inc; //incident energy
+	Double_t energy_absorbed;
+
+}

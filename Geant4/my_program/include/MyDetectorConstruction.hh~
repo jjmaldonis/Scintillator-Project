@@ -1,0 +1,128 @@
+#ifndef MyDetectorConstruction_h
+#define MyDetectorConstruction_h 1
+
+#include "G4VUserDetectorConstruction.hh"
+#include "globals.hh"
+
+class G4SDManager;
+class G4Box;
+class G4LogicalVolume;
+class G4VPhysicalVolume;
+class G4Material;
+class G4UniformMagField;
+class MyCalSD;
+//class DetectorMessenger;
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+struct sdStruct
+{
+	G4LogicalVolume* sdLog;
+	MyCalSD* sdTracker;
+};
+
+class DetectorConstruction : public G4VUserDetectorConstruction
+{
+  public:
+  
+    DetectorConstruction();
+   ~DetectorConstruction();
+
+  public:
+     
+     void SetAbsorberMaterial (G4String);     
+     void SetAbsorberThickness(G4double);     
+
+     void SetDetectorMaterial (G4String);     
+     void SetDetectorThickness(G4double);
+     
+     void SetCalorSizeYZ(G4double);
+     
+     G4VPhysicalVolume* Construct();
+
+     void UpdateGeometry();
+     
+  public:
+  
+     void PrintCalorParameters(); 
+                    
+     G4double GetWorldSizeX()           {return WorldSizeX;}; 
+     G4double GetWorldSizeYZ()          {return WorldSizeYZ;};
+     
+     G4double GetCalorThickness()       {return CalorThickness;}; 
+     G4double GetCalorSizeYZ()          {return CalorSizeYZ;};
+     
+     G4Material* GetAbsorberMaterial()  {return AbsorberMaterial;};
+     G4double    GetAbsorberThickness() {return AbsorberThickness;};      
+     
+     G4Material* GetDetectorMaterial()       {return DetectorMaterial;};
+     G4double    GetDetectorThickness()      {return DetectorThickness;};
+     
+     const G4VPhysicalVolume* GetphysiWorld() {return physiWorld;};           
+     const G4VPhysicalVolume* GetAbsorber()   {return physiAbsorber;};
+     const G4VPhysicalVolume* GetDetector()        {return physiDetector;};
+     
+     //Sensitive Detector Mgr, declared here so that it can be initialized
+     G4SDManager* SDman;
+                 
+  private:
+     
+     G4Material*        AbsorberMaterial;
+     G4double           AbsorberThickness;
+     
+     G4Material*        DetectorMaterial;
+     G4double           DetectorThickness;
+     
+     G4double           LayerThickness;
+          
+     G4double           CalorSizeYZ;
+     G4double           CalorThickness;
+     
+     G4Material*        defaultMaterial;
+     G4double           WorldSizeYZ;
+     G4double           WorldSizeX;
+            
+     G4Box*             solidWorld;    //pointer to the solid World 
+     G4LogicalVolume*   logicWorld;    //pointer to the logical World
+     G4VPhysicalVolume* physiWorld;    //pointer to the physical World
+
+     G4Box*             solidCalor;    //pointer to the solid Calor 
+     G4LogicalVolume*   logicCalor;    //pointer to the logical Calor
+     G4VPhysicalVolume* physiCalor;    //pointer to the physical Calor
+     
+     G4Box*             solidLayer;    //pointer to the solid Layer 
+     G4LogicalVolume*   logicLayer;    //pointer to the logical Layer
+     G4VPhysicalVolume* physiLayer;    //pointer to the physical Layer
+         
+     G4Box*             solidAbsorber; //pointer to the solid Absorber
+     G4LogicalVolume*   logicAbsorber; //pointer to the logical Absorber
+     G4VPhysicalVolume* physiAbsorber; //pointer to the physical Absorber
+     
+     G4Box*             solidDetector;      //pointer to the solid Detector
+     G4LogicalVolume*   logicDetector;      //pointer to the logical Detector
+     G4VPhysicalVolume* physiDetector;      //pointer to the physical Detector
+
+//      DetectorMessenger* detectorMessenger;  //pointer to the Messenger
+      
+  private:
+    
+     void DefineMaterials();
+     void ComputeCalorParameters();
+     G4VPhysicalVolume* ConstructCalorimeter();     
+};
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+inline void DetectorConstruction::ComputeCalorParameters()
+{
+  // Compute derived parameters of the calorimeter
+     LayerThickness = AbsorberThickness + DetectorThickness;
+     CalorThickness = NbOfLayers*LayerThickness;
+     
+     WorldSizeX = 1.2*CalorThickness; WorldSizeYZ = 1.2*CalorSizeYZ;
+}
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
+#endif
+

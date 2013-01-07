@@ -1,0 +1,42 @@
+# $Id: vis.mac,v 1.6 2007/06/13 10:36:39 maire Exp $
+#
+# Macro file for the initialization phase of "exampleN03.cc"
+# when running in interactive mode
+#
+# Sets some default verbose
+#
+
+/control/verbose 2
+/control/saveHistory
+/run/verbose 2
+
+/vis/open OGLIQt 1240x1020-0+0
+
+/vis/drawVolume
+
+/vis/scene/add/hits
+/vis/scene/add/trajectories rich
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts false
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+
+/vis/filtering/trajectories/create/particleFilter
+#/vis/filtering/trajectories/particleFilter-0/add opticalphoton
+/vis/filtering/trajectories/particleFilter-0/add e-
+/vis/filtering/trajectories/particleFilter-0/add e+
+/vis/filtering/trajectories/particleFilter-0/add gamma
+
+#/vis/filtering/trajectories/create/attributeFilter
+#/vis/filtering/trajectories/attributeFilter-0/setAttribute IMag
+#/vis/filtering/trajectories/attributeFilter-0/addInterval 500 MeV 500 GeV
+
+/vis/scene/endOfEventAction accumulate -1
+
+/vis/viewer/set/lightsMove camera
+/vis/viewer/set/edge 
+/vis/viewer/set/culling global
+/vis/viewer/set/culling coveredDaughters 
+/vis/viewer/set/hiddenEdge 0
+/vis/viewer/set/auxiliaryEdge 
+/vis/geometry/set/forceWireframe World 0 1
+

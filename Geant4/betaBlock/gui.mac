@@ -1,0 +1,27 @@
+#
+#  This file permits to customize, with commands,
+# the menu bar of the G4UIXm, G4UIWin32 sessions.
+# It has no effect with G4UIterminal.
+#
+# File :
+/gui/addMenu file File
+/gui/addButton file Continue continue
+/gui/addButton file Exit "exit"
+#
+# Run menu :
+/gui/addMenu cmd Command
+/gui/addButton cmd "Run one event" "/run/beamOn 1"
+/gui/addButton cmd "Run 10 events" "/run/beamOn 10"
+/gui/addButton cmd "Run 100 events" "/run/beamOn 100"
+#
+# Gun menu :
+/gui/addMenu gun "Energy" 
+/gui/addButton gun "1 GeV"   "/gun/energy 1 GeV"
+/gui/addButton gun "10 GeV"  "/gun/energy 10 GeV"
+/gui/addButton gun "100 GeV"  "/gun/energy 100 GeV"
+
+# Particle menu:
+/gui/addMenu beam "Beam" 
+/gui/addButton beam "Setup Beam" "/control/execute beam.mac"
+/gui/addButton beam "Setup Beam 2 (gammas)" "/control/execute beam2.mac"
+

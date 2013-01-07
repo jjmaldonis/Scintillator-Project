@@ -1,0 +1,1073 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://blog.fordhurley.com/installing-root-on-ubuntu-1104 -->
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" class=" js no-csstransforms3d"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/saved_resource" type="text/javascript"></script><script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/saved_resource(1)" type="text/javascript"></script>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1">
+      <meta name="width" content="500">
+      <meta name="generator" content="Posterous">
+      <link href="./Installing ROOT on Ubuntu 11.04 - No Direction_files/posts.css" media="screen" rel="stylesheet" type="text/css">
+      <!--[if lt IE 9]>
+        <link href="/bundles/ie.css?1304722360" media="screen" rel="stylesheet" type="text/css" />
+      <![endif]-->  
+      <link rel="alternate" type="application/rss+xml" href="http://blog.fordhurley.com/rss.xml">
+      <meta name="medium" content="blog"><link rel="image_src" href="./Installing ROOT on Ubuntu 11.04 - No Direction_files/unknown75.gif">
+      <script type="text/javascript">
+//<![CDATA[
+window._token = 'vUNAraJeAUBkRAfS2j6aQn0/6ZMu5qwvgDywCgBdvtk='; beforeload = (new Date()).getTime(); pagetype = 'show';
+//]]>
+</script>
+      <script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/sites_initialization.js" type="text/javascript"></script>
+      <script type="text/javascript">
+//<![CDATA[
+var $j = jQuery.noConflict();
+//]]>
+</script>
+      <script data-post-data="%7B%22post_is_private%22%3Afalse%2C%22post_url_slug%22%3A%22installing-root-on-ubuntu-1104%22%2C%22post_id%22%3A51330325%2C%22user_id%22%3A563935%7D" data-posterous-deferred-content-url="http://blog.fordhurley.com/posts/deferred_content.jsonp" data-posts-data="%5B%7B%22post_is_private%22%3Afalse%2C%22post_url_slug%22%3A%22installing-root-on-ubuntu-1104%22%2C%22post_id%22%3A51330325%2C%22user_id%22%3A563935%7D%5D" id="posterous_initialization_script" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/initialize.js" type="text/javascript"></script>      
+      <script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/modernizr.custom.35729.js" type="text/javascript"></script>
+      
+      <!--[if lt IE 9]>
+        <script src="/javascripts/html5.js?1304722249" type="text/javascript"></script>
+        <script src="/javascripts/innershiv.js?1304722249" type="text/javascript"></script>
+      <![endif]-->          
+    <script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/tags.js" type="text/javascript"></script><link rel="canonical" href="./Installing ROOT on Ubuntu 11.04 - No Direction_files/Installing ROOT on Ubuntu 11.04 - No Direction.html">
+
+
+
+<title>Installing ROOT on Ubuntu 11.04 - No Direction</title>
+    <link href="http://blog.fordhurley.com/images/favicon.png" rel="icon" type="image/x-png">
+<style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0;
+}
+.clear {
+    clear: both;
+    font-size: 0;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.text-right {
+    text-align: right;
+}
+.center {
+    text-align: center;
+}
+.xxsmall {
+    font-size: 10px;
+}
+.xsmall {
+    font-size: 11px;
+}
+.small {
+    font-size: 12px;
+}
+.normal {
+    font-size: 14px;
+}
+.big {
+    font-size: 16px;
+}
+.black {
+    color: #000;
+}
+.strong {
+    font-weight: bold;
+}
+.float {
+    float: left;
+}
+.right {
+    float: right;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.absolute-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+body {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+    font-size: 12px;
+}
+a {
+    color: #0080C3;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a.reverse {
+    text-decoration: underline;
+}
+a.reverse:hover {
+    text-decoration: none;
+}
+.no-ul {
+    text-decoration: none
+}
+.no-ul:hover {
+    text-decoration: underline !important
+}
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+}
+.posterousHeader {
+    left: -10px;
+    position: absolute;
+    top: 0;
+}
+
+.header {
+    background: #0080C3;
+    color: #fff;
+    overflow: visible;
+    z-index: 10;
+    text-align: center;
+}
+.header_text, .header_text .content { height: 100px; }
+.header .content {
+    width: 500px;
+    margin: 0 auto;
+    padding-right: 100px;
+    position: relative;
+}
+
+h1,h2,.about-details,.date {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial,Helvetica,sans-serif;
+}
+.date {
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: right;
+    line-height: 36px;
+}
+
+h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+h2 a {
+    color: #0080C3;
+    text-decoration: none;
+}
+
+h2 a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.post_body { margin-top: 15px; }
+
+h4 {
+    color: #555;
+}
+
+.about {
+        display: none;
+    left: -50px;
+    margin: 28px auto 5px;
+    position: relative;
+    overflow: hidden;    
+    width: 500px;
+}
+
+.about-details {
+    line-height: 1.5em;
+    margin-left: 70px;
+    width: 430px;
+    overflow: hidden;
+    margin-top: -10px;
+}
+
+.about-details p {
+    color: #444;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+
+#posts {
+    float: left;
+    width: 680px;
+}
+
+
+.postunit {
+    padding: 20px 0px;
+    margin: 5px 0px;
+    position: relative;
+}
+
+.info-column {
+    color: #444;
+    float: left;
+    font-size: 14px;
+    text-align: right;
+    width: 180px;
+    margin-top: 1px;
+}
+
+.date {
+    margin: 5px 20px 0 0;
+}
+.date-day {
+    color: #444;
+    font-weight: bold;
+}
+
+.date a:hover {
+    color: #0080C3;
+}
+
+.post {
+    float: right;
+    position: relative;
+    width: 500px;
+}
+
+.post p, .post div {
+    line-height: 1.5em;
+}
+
+p {
+    margin: 15px 0px;
+}
+.post ol { margin: 15px 0px 15px 20px;}
+.post ul { margin: 15px 0px 15px 15px;}
+
+.galleryLabel {
+    color: #676767;
+}
+
+
+.tagsbar {
+    font-size: 11px;
+    line-height: 14px;
+    color: #aaa;
+    margin-top: 15px
+}
+
+.infobar .location {
+    display: block !important;
+    font-size: 11px;
+    float: left;
+}
+
+.infobar .details {
+    float: right;
+    font-size: 10px;
+    margin-top: 1px;
+}
+
+.date-comments {
+    padding-left: 10px;
+}
+
+.infobar .posted,.infobar .comments-name {
+    color: #0080C3;
+}
+
+.infobar a.timestamp,.infobar .comments-quantity {
+    color: #999;
+    font-size: 10px;
+}
+
+.comment-area {
+    clear: left;
+}
+
+.infobar .comment_list {
+    display: inline !important;
+}
+
+.comment,.commentunit {
+    color: #444;
+    margin-top: 5px;
+}
+
+.commentunit {
+    width: auto !important;
+}
+
+.commentname a {
+    text-decoration: none !important;
+}
+
+.commentname a:hover {
+    text-decoration: underline !important;
+}
+
+.comment h4 {
+    margin: 0 !important;
+}
+
+.posterousAddNewComment .commentunit {
+    margin-top: 20px;
+    border-bottom: none !important;
+}
+
+.comment ul.mini_commands {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: right;
+    top: 0;
+}
+
+.comment ul.mini_commands li {
+    margin: 0px 5px 0px 0px;
+}
+
+
+.comment_value label {
+    margin-right: 10px;
+}
+.comment_value br {
+    display: none;
+}
+
+.comment_value input[type='submit'] {
+    margin: 10px 0px;
+}
+
+.comment_none_yet_msg {
+    color: #888;
+    font-size: 11px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+.infobar .details a {
+    text-decoration: none;
+}
+
+.infobar .details a:hover {
+    text-decoration: underline;
+}
+
+.location-map {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #eee;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.map {
+    float: left;
+    height: 150px;
+    width: 300px;
+}
+
+.location-details {
+    color: #676767;
+    float: right;
+    width: 175px
+}
+
+p.private-post {
+    margin: 10px 20px 0px 0px;
+}
+.private-post a.tooltip_link:hover span {
+    color: #555;
+    right: 0px; width: 110px;
+}
+
+.private-post a.tooltip_link:hover span b {
+    color: #555;
+}
+
+.search-section, .tag-section, .archive-section {
+    margin-left: 160px;
+    padding: 20px 20px 5px 20px;
+}
+.search-section h2, .tag-section h2, .archive-section h2 {
+    color: #444;
+    font-size: 16px;
+}
+
+.pagination {
+    color: #676767;
+    margin: 0 0 50px 180px;
+}
+
+.pagination span {
+    position: relative;
+    top: 2px;
+}
+
+.pagination a {
+    background: #0080C3;
+    border: solid 1px #0080C3;
+    color: #fff;
+    display: inline-block;
+    display: -moz-inline-box;
+    padding: 1px 6px;
+}
+
+.pagination a:hover {
+    background: #555;
+    border: solid 1px #555;
+    color: #ddd;
+    text-decoration: none;
+}
+
+.pagination .disabled {
+    color: #676767;
+}
+
+.pagination .current {
+    color: #676767;
+    font-weight: bold;
+    padding: 0 3px;
+}
+
+
+#sidebar {
+    float: right;
+    width: 230px;
+    margin-top: 30px;
+}
+
+.sidebar-block {
+    margin-bottom: 30px;
+}
+
+h5 {
+    color: #0080C3;
+    font-size: 11px;
+    font-weight: bold;
+    padding-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.tags {
+    width: 230px;
+}
+
+.tag {
+    margin: 0;
+    padding-top: 7px;
+}
+
+#more-tags-listing ul {
+    margin: 0;
+}
+
+.tag li,#more-tags-listing li,.taglist li, div.archives {
+    color: #0080C3;
+    font-size: 10px;
+    list-style: none;
+    margin: 0;
+    vertical-align: top;
+}
+
+.taglist ul {
+    margin: 0 !important;
+}
+
+.tag li a,#more-tags-listing li a,.taglist li a, div.archives a {
+    color: #818181;
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 7px;
+    text-decoration: none;
+}
+
+.tag li a:hover,#more-tags-listing li a:hover,.taglist li a:hover, div.archvies a:hover {
+    text-decoration: underline;
+}
+
+a.more-tags {
+    color: #0080C3 !important;
+    font-size: 10px !important;
+    text-decoration: none;
+}
+
+a.more-tags:hover {
+    text-decoration: underline;
+}
+
+li.tag_item_selected {
+    color: #333;
+    font-size: 12px;
+    padding-bottom: 7px;
+}
+
+div.archive_list {padding-top:7px;}
+div.archives div.inner {margin-left:10px;}
+
+.search {
+    background: url(/themes/search-light.gif) no-repeat 3px 2px #fff;
+    border: solid 1px #e5e5e5;
+    color: #aaa;
+    font-size: 11px;
+    margin-bottom: 2px;
+    padding: 5px 7px 5px 20px;
+    width: 153px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.search:focus {
+    color: #333;
+}
+
+
+.contributors, .fans {
+    margin: 10px 0;
+}
+ul.contribs li, ul.contribs li a, ul.fans li, ul.fans li a {
+    font-size: 11px;
+    color: #666;
+    list-style: none;
+}
+ul.contribs li img, ul.fans li img {
+    vertical-align: middle;
+}
+
+#subscribe_div {
+    margin-bottom: 3px;
+}
+
+.subscribe-link {
+    color: #666;
+    font-size: 11px;
+    padding: 2px 0px 0px 20px;
+    line-height: 20px; 
+    position: relative;
+    top: -2px;
+
+}
+.subscribe-site {
+    background: url(/images/favicon.png) no-repeat -1px -1px;
+  padding: 2px 0px 0px 20px;
+    height: 20px;
+    margin: 3px 0px;    
+    font-size: 11px;
+    color: #666;
+}
+.subscribe-site div a { color: #666;}
+.subscribe-rss {
+    background: url(/images/feed-icon-14x14.png) no-repeat -1px;
+    height: 16px;
+    margin: 3px 0px;    
+    padding-bottom: 3px;
+}
+.editbox {
+    visibility: hidden;
+    position: absolute;
+    top: -5px;
+    left: 180px;
+}
+.postunit:hover .editbox {
+    visibility: visible;
+}
+.posted_by {
+    font-size: 10px;
+    margin: 5px 0px 20px 0px;
+    color: #888;
+}
+.posted_by a {
+    color: #999;
+}
+
+.posterousPrivateBox a { color: #fff;}
+.metricLabel { font-size: 10px; color: #aaa; }
+.metricValue { font-size: 10px; color: #444; font-weight: bold; }
+div.profile_ajax_reply { padding-left: 20px; }
+
+ul.navigation { margin: 20px auto; width: 500px; position: relative; left: -50px; }
+ul.navigation li { list-style: none; display: inline; padding-right: 20px; }
+ul.navigation li a { font-size: 17px; }
+ul.navigation li a.current { color: #444; font-weight: bold; }
+
+.sharing { padding: 5px 5px 5px 0; }
+.posterous_tweet_button, .posterous_fb_like_widget { float: left; display: inline; margin-right: 15px; }
+
+.p_responses { margin-top: 15px; }
+</style>
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size: 11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{background:rgba(82, 82, 82, .7);padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size: 24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/ze/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size: 14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/zd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:right}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:relative;vertical-align:text-bottom}
+.fb_iframe_widget span{position:relative}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/z9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v1/zL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size: 24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size: 13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size: 11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size: 10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size: 10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size: 22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/zX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size: 10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size: 11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size: 13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size: 13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size: 11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr{left:-4px}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_rtl{left:2px}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{left:0;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+#fb_social_bar_container{position:fixed;left:0;right:0;height:34px;padding:0 25px;z-index:999999999}
+.fb_social_bar_iframe{position:relative;float:right;opacity:0;-moz-opacity:0;filter:alpha(opacity=0)}
+.fb_social_bar_iframe_bottom_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+.fb_social_bar_iframe_top_ie6{bottom:auto;top:expression(eval(document.documentElement.scrollTop-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+</style><script type="text/javascript" charset="UTF-8" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/{common,util}.js"></script></head>
+
+<body style=""><div class="posterous_site_data" data-post-id="51330325" data-posterous-hostname="posterous.com" data-show-type="post" data-site-id="1493232" data-site-location="false" data-site-type="posterous" data-slug-id="installing-root-on-ubuntu-1104" data-user-id="563935"></div><div class="posterousPrivateBox">
+	
+	
+</div>
+      <div id="fb-root" class=" fb_reset"><script type="text/javascript" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/all.js" async=""></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px; "><div><iframe id="f3f4ed12b8" name="f1fad5cf18" scrolling="no" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; overflow-x: hidden; overflow-y: hidden; " class="FB_UI_Hidden" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/login_status.html"></iframe></div></div></div>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              apiKey : '9cccf2c9570e99aeb7ea4a7284b957a1',
+              status : true, // check login status
+              cookie : true, // enable cookies to allow the server to access the session
+              xfbml  : true  // parse XFBML
+            });
+            
+          };
+
+          (function() {
+            var e = document.createElement('script');
+            e.type = 'text/javascript';
+            e.src = 'http://connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+          }());
+        </script>
+    
+    <div class="header header_text" style="z-index: 10 !important;">
+        <div class="content">
+            <div id="posterous_bar" style="" class="posterousHeaderDark posterousHeader"><a href="http://posterous.com/"><img src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/default-clear-right.png" class="posterousHeaderImageRight"><img src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/yellow-arrow.png" style="display: none; " class="posterousHeaderImageRight"><img src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/yellow-expanded.png" style="display: none; " class="posterousHeaderImageRight"></a><div id="posterous_barexpanded_content" style="display: none; " class="posterousHeaderExpandedDivRight">
+        				<noscript>
+  &amp;lt;div id="posterousbar_nojs"&amp;gt;
+    &amp;lt;a href="http://posterous.com/"&amp;gt;&amp;lt;img src="/images/header/yellow.png" alt="Posterous" /&amp;gt;&amp;lt;/a&amp;gt;
+  &amp;lt;/div&amp;gt;
+</noscript>
+                <div class="posterous_ojs" data-posterous-bar="true" data-posterous-action-id="posterous_bar" data-posterous-direction="right" data-posterous-translucent="true"></div>
+                
+              		
+  <div id="posterousHeaderNotLoggedIn">
+    
+      <a href="http://posterous.com/people/5Aqfjaw7P2Kt">fordhurley</a>
+    
+    is using <a href="http://posterous.com/">Posterous</a> to post everything online. Shouldn't you?
+  </div>
+  <div class="posterousHeaderSecondary">
+    
+	<div class="posterousHeaderItemProfile">
+		<a href="http://posterous.com/people/5Aqfjaw7P2Kt"><img alt="Unknown35" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/unknown35.gif"></a>
+	</div>
+	
+	<div class="posterousHeaderItem posterousHeaderOwnership">
+		<a href="http://posterous.com/people/5Aqfjaw7P2Kt">
+			<div class="posterousHeaderItemValue">fordhurley</div>
+			
+				<div class="posterousHeaderItemName">owns this site</div>
+			
+		</a>
+	</div>
+
+
+<div class="posterousHeaderItem">
+	<a href="http://posterous.com/people/subscribers/fordhurley">
+		
+			<div class="posterousHeaderItemValue">0</div>
+			<div class="posterousHeaderItemName">subscribers</div>
+		
+	</a>
+</div>
+
+  </div>
+  <div class="posterousHeaderActions">
+    <a href="http://posterous.com/" class="try_it_now">Try it now</a>
+    <a href="http://posterous.com/login?jumpto=http://blog.fordhurley.com/installing-root-on-ubuntu-1104" class="login">Login</a>
+	  <a href="http://blog.fordhurley.com/#!/slideshow" class="slideshow">Slideshow</a>		    
+  </div>
+</div></div>        
+            
+            
+                <h1 style="z-index: 11 !important;; position: absolute; bottom: -5px; right: 110px; text-align: right;"><a href="http://blog.fordhurley.com/">No Direction</a></h1>
+                <h1 style="z-index: 1 !important; position: absolute; bottom: -6px; right: 110px; text-align: right;"><a href="http://blog.fordhurley.com/" style="color: #aaa">No Direction</a></h1>
+                        
+        </div>
+    </div><!-- /.header -->
+
+
+<div class="content">
+    <div class="about">
+        <a href="http://posterous.com/people/5Aqfjaw7P2Kt"><img class="left" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/unknown75.gif" height="50" alt="" width="50"></a>
+        <div class="about-details">
+            <p><a href="http://posterous.com/people/5Aqfjaw7P2Kt">fordhurley</a>&nbsp;&nbsp;<span style="color: #ccc">//</span>&nbsp;&nbsp;</p>
+        </div>
+    </div><!-- /.about -->
+</div><!-- /.content -->
+
+<div class="container">
+    <div id="posts">
+        
+            
+
+        
+        
+        
+                
+        
+            <div class="postunit" id="postunit_51330325">
+                
+        				
+                  
+                        <div class="editbox">&nbsp;</div>
+                
+                
+              
+
+                <div id="post_control_51330325"></div>
+                <div class="info-column">
+                  
+                    <div class="date"><a href="./Installing ROOT on Ubuntu 11.04 - No Direction_files/Installing ROOT on Ubuntu 11.04 - No Direction.html"><span class="date-day">Apr 30</span></a> / 5:18am</div>
+                    
+                        
+    
+                </div>
+                <div class="post" id="post_51330325">
+                        <h2 id="posttitle_51330325"><a href="./Installing ROOT on Ubuntu 11.04 - No Direction_files/Installing ROOT on Ubuntu 11.04 - No Direction.html">Installing ROOT on Ubuntu 11.04</a></h2>
+                        
+      	        
+            
+
+                        
+              
+            
+
+                        <div class="post_body">
+                        <p><em><strong>UPDATE</strong>: There has been some discussion on the ROOT support forum about this issue. According to <a href="http://root.cern.ch/phpBB3/viewtopic.php?f=3&t=12506">this thread</a>, the solution is to install the latest version of ROOT, available from the <a href="http://root.cern.ch/drupal/content/installing-root-source">subversion repository</a>. After successfully installing, I still had a problem having to do with the some Adobe Helvetica font error. A solution was posted in <a href="http://root.cern.ch/phpBB3/viewtopic.php?f=3&t=12627">this thread</a>.</em></p>
+
+<p>The latest version of Ubuntu was released this week, version 11.04. Installing <a href="http://root.cern.ch/drupal/">ROOT</a> proved to be a bit of a problem. On the previous version, it was available with apt-get, but for some reason it isn’t included in the repositories in 11.04. So, I downloaded the source and tried compile it the usual way. After installing the prerequisites listed <a href="http://root.cern.ch/drupal/content/build-prerequisites">here</a>, I tried to do this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="other">.</span><span class="other">/</span>configure linux <span class="other">-</span><span class="argument">-prefix=</span><span class="other">/</span>usr<span class="other">/</span><span class="fu">local</span></pre></div>
+</div>
+
+
+<p>Unfortunately, I got this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>configure<span class="other">:</span> Checking <span class="r">for</span> libX11 <span class="other">.</span><span class="other">.</span><span class="other">.</span> no
+configure<span class="other">:</span> libX11 MUST be installed</pre></div>
+</div>
+
+
+<p>Evidently, it failed to find libX11, even though it was installed. It turns out that the library isn’t installed in the usual /usr/lib/X11, but instead in /usr/lib/i386-linux-gnu. Fix the configure script by adding the —with-x11-libdir option:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="other">.</span><span class="other">/</span>configure linux <span class="other">-</span><span class="argument">-prefix=</span><span class="other">/</span>usr<span class="other">/</span><span class="fu">local</span> <span class="other">-</span><span class="argument">-with</span><span class="argument">-x11</span><span class="argument">-libdir=</span><span class="other">/</span>usr<span class="other">/</span>lib<span class="other">/</span>i386<span class="argument">-linux</span><span class="argument">-gnu</span></pre></div>
+</div>
+
+
+<p>There were a few other libraries installed in this odd directory, so I had to add a few more of these options. In the end this command succeeded:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="other">.</span><span class="other">/</span>configure linux <span class="other">-</span><span class="argument">-prefix=</span><span class="other">/</span>usr<span class="other">/</span><span class="fu">local</span> <span class="other">-</span><span class="argument">-with</span><span class="argument">-x11</span><span class="argument">-libdir=</span><span class="other">/</span>usr<span class="other">/</span>lib<span class="other">/</span>i386<span class="argument">-linux</span><span class="argument">-gnu</span> <span class="other">-</span><span class="argument">-with</span><span class="argument">-xext</span><span class="argument">-libdir=</span><span class="other">/</span>usr<span class="other">/</span>lib<span class="other">/</span>i386<span class="argument">-linux</span><span class="argument">-gnu</span> <span class="other">-</span><span class="argument">-with</span><span class="argument">-xft</span><span class="argument">-libdir=</span><span class="other">/</span>usr<span class="other">/</span>lib<span class="other">/</span>i386<span class="argument">-linux</span><span class="argument">-gnu</span></pre></div>
+</div>
+
+
+<p>Finish up with a:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>make
+sudo make install</pre></div>
+</div>
+
+
+<p>and you’re good to go.
+Now to get back to work analyzing data!</p>
+                        </div>
+
+                        
+            
+          
+
+                        
+
+
+                        
+              
+                
+              
+            
+
+
+                        
+              <aside class="p_responses light">
+                
+            
+          
+            
+              <nav class="p_response_widget">
+<ul class="clearfix">
+<li class="p_responses_link active"><a href="http://blog.fordhurley.com/responses/recent?post_id=51330325" data-posterous-response-count="51330325" data-response-post-id="51330325" title="View responses to this post"><strong>0</strong> responses</a></li>
+<li class="p_like_link"><a href="http://blog.fordhurley.com/likes/create?like_type=post&post_id=51330325" class="like_post" data-like-url="/likes/create?like_type=post&amp;post_id=51330325" data-posterous-like-button-for-post-id="51330325" data-posterous-like-text="Like this post" data-posterous-like="true" data-posterous-unlike-text="Unlike this post" data-unlike-url="/likes/delete?like_type=post&amp;post_id=51330325" title="Like this post"><div class="p_like_icon"></div><div class="p_unlike_icon" style="display: none; "></div><span>Like this post</span></a></li>
+<li class="p_comment_link"><a href="http://blog.fordhurley.com/responses/recent?post_id=51330325" data-comment-post-id="51330325" title="Comment on this post"><div>Comment</div></a></li>
+</ul>
+</nav>
+
+          		<div data-posterous-responses-for-post-id="51330325">
+<div class="p_response_container">
+<a name="comment"></a>
+<div class="p_responses_list clearfix" data-posterous-responses-container="">
+</div>
+</div>
+</div>
+
+          		<div class="p_comment_form p_not_logged_in">
+<h1>Leave a Comment</h1>
+<div class="icon"></div>
+<h2>Hello there. Don't believe we've met before!</h2>
+<p>Log in with any of the following to comment:</p>
+<div class="p_login_buttons">
+<a href="http://posterous.com/login?flow=newcomment&jumpto=http%3A%2F%2Fblog.fordhurley.com%2Finstalling-root-on-ubuntu-1104%23comment" class="p_posterous_login">Register or login to Posterous</a>
+<a href="http://blog.fordhurley.com/installing-root-on-ubuntu-1104#" class="p_twitter_login" data-posterous-jumpto-url="http://blog.fordhurley.com/installing-root-on-ubuntu-1104#comment" data-posterous-post-id="51330325" data-posterous-redirect-url="http://posterous.com/oauth/init_oauth_and_redirect/?ssod=blog.fordhurley.com&amp;oauth_provider_type=" data-posterous-twitter-login-button="true"><img alt="Sign in with Twitter" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/sign_in_with_twitter.png"></a>
+</div>
+
+</div>
+
+            
+          
+              </aside> 
+        		      
+
+                </div><!-- /.post -->
+                <div class="clear"></div>
+            </div><!-- /.postunit -->
+        
+    
+    
+    
+    </div><!-- /#posts -->
+
+    
+        <div id="sidebar">
+
+                <p style="font-size: 14px;"><a href="http://blog.fordhurley.com/">«&nbsp;Back to blog</a></p>
+                <div class="sidebar-block" style="margin-top: 30px;">
+                    <div><span class="metricLabel">Viewed </span><span class="metricValue">9 times</span></div>
+
+        </div>
+    
+        
+    
+    <div class="clear"></div>
+</div><!-- /.container -->
+</div>
+
+    
+      <script type="text/javascript">
+    	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    	</script><script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/ga.js" type="text/javascript"></script>
+    	<script type="text/javascript">
+    	var pageTracker = _gat._getTracker("UA-4054156-1");
+    	pageTracker._setDomainName("none");
+    	pageTracker._setAllowLinker(true);
+    	pageTracker._setAllowHash(false);
+    	pageTracker._initData();
+    	pageTracker._trackPageview();
+    	</script>  	
+    
+	
+	<!-- Start Quantcast tag -->
+	<script type="text/javascript">
+	_qoptions={
+	qacct:"p-16ewveTurfCCM"
+	};
+	</script>
+	
+	
+    	<script type="text/javascript" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/quant.js"></script>
+    	<noscript>
+    	&lt;a href="http://www.quantcast.com/p-16ewveTurfCCM" target="_blank"&gt;&lt;img src="http://pixel.quantserve.com/pixel/p-16ewveTurfCCM.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/&gt;&lt;/a&gt;
+    	</noscript>	
+	
+	<!-- End Quantcast tag -->
+
+
+	<script type="text/javascript">
+		try {
+			var pageTrackerUser = _gat._getTracker("UA-1675503-2");
+			pageTrackerUser._trackPageview();
+		} catch (err) {}
+	</script>
+
+
+<script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/view.js" type="text/javascript"></script>
+<script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/sites.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/widgets.js" defer=""></script>
+<script type="text/javascript" src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/js"></script><script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/main.js" type="text/javascript"></script>
+
+<script>
+	var fbid_site_owner = 1;
+</script>
+
+
+
+<div class="posterous_ojs" data-posterous-twitter-oauth="true" data-posterous-post-ids="%7B%2251330325%22%3A%22http%3A%2F%2Fblog.fordhurley.com%2Finstalling-root-on-ubuntu-1104%22%7D" data-posterous-redirect-url="http://posterous.com/oauth/init_oauth_and_redirect/?ssod=blog.fordhurley.com&amp;oauth_provider_type="></div>
+<iframe src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/analytics_tracker.html" style="height: 1px; width: 1px; display: none;"></iframe>
+
+      <script type="text/javascript">
+      var mp_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+      document.write(unescape("%3Cscript src='" + mp_protocol + "api.mixpanel.com/site_media/js/api/mixpanel.js' type='text/javascript'%3E%3C/script%3E"));
+      </script><script src="./Installing ROOT on Ubuntu 11.04 - No Direction_files/mixpanel.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+      try { 
+          var mpmetrics = new MixpanelLib("9a3025103118d0cfb3f778328f140ccb"); 
+          mpmetrics.set_config({ cookie_name: "posterous_mp" });
+          mpmetrics.register({"registered":"false","browser":"Chrome","user":""});
+      } catch(err) {
+          null_fn = function () {};
+          var mpmetrics = { track: null_fn, track_funnel: null_fn, register: null_fn, register_once: null_fn, register_funnel: null_fn };
+      }
+      </script>      
+    
+
+
+
+<a id="posterous_footerbar" href="http://www.posterous.com/">Share it your way on Posterous - Create your own site, blog or group for free&nbsp;»</a><div id="modal_overlay" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 9998; display: none; "></div><div id="modal_container_holder" style="display: none; "><div id="modal_container"></div></div><div id="modal_loading" style="display: none; "></div></body></html>

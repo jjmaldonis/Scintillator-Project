@@ -1,0 +1,16 @@
+/*
+	Describes all Particles and all physics processes
+*/
+
+#include "G4VUserPhysicsList.hh"
+#include "globals.hh"
+
+class MyPhysicsList : public G4VUserPhysicsList
+{
+	public:
+		MyPhysicsList
+		
+	private:
+		
+		
+}

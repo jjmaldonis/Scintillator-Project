@@ -1,0 +1,183 @@
+/************************************************************************************
+**  pTP Properties, to keep the material definitions code from getting
+**  too verbose.
+**  John Neuhaus 8-3-2009
+**
+*************************************************************************************/
+
+//Photon momentum for absorption length
+const int absNum = 36;
+double PPabs[absNum] =
+{	1.00*eV,
+	2.384615385*eV,
+	3.821263718*eV,
+	3.853924093*eV,
+	3.881064406*eV,
+	3.914759521*eV,
+	3.933386451*eV,
+	3.952191487*eV,
+	3.955343155*eV,
+	3.974359229*eV,
+	4.042380183*eV,
+	4.08566762*eV,
+	4.12302618*eV,
+	4.157586336*eV,
+	4.189189614*eV,
+	4.224872664*eV,
+	4.261168824*eV,
+	4.301821783*eV,
+	4.347064436*eV,
+	4.488687783*eV,
+	4.679245813*eV,
+	4.732824969*eV,
+	4.783028519*eV,
+	4.834308558*eV,
+	4.886700085*eV,
+	4.940239634*eV,
+	5.000000605*eV,
+	5.071575264*eV,
+	5.166667313*eV,
+	5.321889097*eV,
+	5.432640364*eV,
+	5.504995428*eV,
+	5.560539114*eV,
+	5.610860744*eV,
+	5.617215061*eV,
+	5.642776909*eV };
+
+//spectrum of absorption lengths, mates with above momentums
+
+double concentration = 0.009; //in g pTP / ml material
+double molarMass = 230.3;  // g/mol
+double molarity = (concentration/molarMass) * 1000;
+
+
+double absLen[absNum] =
+{	 1/(10*molarity/2.303)*cm,
+	 1/(10*molarity/2.303)*cm,
+	 1/(502*molarity/2.303)*cm,
+	 1/(731*molarity/2.303)*cm,
+	 1/(1045*molarity/2.303)*cm,
+	 1/(1510*molarity/2.303)*cm,
+	 1/(2052*molarity/2.303)*cm,
+	 1/(2294*molarity/2.303)*cm,
+	 1/(2682*molarity/2.303)*cm,
+	 1/(3119*molarity/2.303)*cm,
+	 1/(5928*molarity/2.303)*cm,
+	 1/(8884*molarity/2.303)*cm,
+	 1/(11865*molarity/2.303)*cm,
+	 1/(14956*molarity/2.303)*cm,
+	 1/(17796*molarity/2.303)*cm,
+	 1/(20760*molarity/2.303)*cm,
+	 1/(23797*molarity/2.303)*cm,
+	 1/(26840*molarity/2.303)*cm,
+	 1/(29761*molarity/2.303)*cm,
+	 1/(33800*molarity/2.303)*cm,
+	 1/(29488*molarity/2.303)*cm,
+	 1/(26665*molarity/2.303)*cm,
+	 1/(23835*molarity/2.303)*cm,
+	 1/(20720*molarity/2.303)*cm,
+	 1/(17857*molarity/2.303)*cm,
+	 1/(14955*molarity/2.303)*cm,
+	 1/(11910*molarity/2.303)*cm,
+	 1/(8856*molarity/2.303)*cm,
+	 1/(6009*molarity/2.303)*cm,
+	 1/(4179*molarity/2.303)*cm,
+	 1/(6049*molarity/2.303)*cm,
+	 1/(8921*molarity/2.303)*cm,
+	 1/(11184*molarity/2.303)*cm,
+	 1/(14628*molarity/2.303)*cm,
+	 1/(15126*molarity/2.303)*cm,
+	 1/(16728*molarity/2.303)*cm  };
+
+const int emNum = 40;
+//photon momentum for emmission spectrum
+double PPemission[emNum] = 
+{	5.642776909*eV,
+	4.13*eV,
+	4.11*eV,
+	4.07*eV,
+	4.04*eV,
+	4.03*eV,
+	4.02*eV,
+	4.01*eV,
+	4.00*eV,
+	3.99*eV,
+	3.96*eV,
+	3.94*eV,
+	3.92*eV,
+	3.91*eV,
+	3.89*eV,
+	3.88*eV,
+	3.85*eV,
+	3.82*eV,
+	3.79*eV,
+	3.75*eV,
+	3.72*eV,
+	3.68*eV,
+	3.67*eV,
+	3.63*eV,
+	3.60*eV,
+	3.51*eV,
+	3.46*eV,
+	3.43*eV,
+	3.39*eV,
+	3.32*eV,
+	3.25*eV,
+	3.16*eV,
+	3.07*eV,
+	3.02*eV,
+	3.02*eV,
+	2.97*eV,
+	2.91*eV,
+	2.91*eV,
+	2.48*eV,
+	1.00*eV};
+
+double emissionSpec[emNum] = 
+{	0.00,
+	0.01,
+	0.02,
+	0.03,
+	0.04,
+	0.05,
+	0.06,
+	0.07,
+	0.09,
+	0.10,
+	0.20,
+	0.32,
+	0.39,
+	0.52,
+	0.60,
+	0.70,
+	0.81,
+	0.80,
+	0.76,
+	0.80,
+	0.90,
+	1.00,
+	1.00,
+	0.91,
+	0.80,
+	0.70,
+	0.60,
+	0.50,
+	0.40,
+	0.30,
+	0.20,
+	0.10,
+	0.05,
+	0.04,
+	0.03,
+	0.02,
+	0.02,
+	0.01,
+	0.00,
+	0.00};
+
+double ppScintYield = 1000./MeV;
+double pTPtau = 3.3*ns;
+const int nNum = 2;
+double PPrIndex[nNum] = {1*eV, 5.642776909*eV};
+double nPTP[nNum] = {1.65, 1.65};

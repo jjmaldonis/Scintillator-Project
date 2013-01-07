@@ -1,0 +1,74 @@
+/run/verbose 2
+/vis/open OGLIQt 1240x1020-0+0
+/vis/sceneHandler/create OGLIQt
+/vis/viewer/create ! ! 1240x1020-0+0
+/vis/viewer/refresh
+/vis/drawVolume
+/vis/scene/create
+/vis/scene/add/volume world
+/vis/sceneHandler/attach
+/vis/scene/add/hits
+/vis/scene/notifyHandlers
+/vis/scene/add/trajectories rich
+/tracking/storeTrajectory 3
+/vis/scene/notifyHandlers
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts false
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/scene/notifyHandlers scene-0
+/vis/filtering/trajectories/create/particleFilter
+/vis/filtering/trajectories/particleFilter-0/add e-
+/vis/scene/notifyHandlers scene-0
+/vis/filtering/trajectories/particleFilter-0/add e+
+/vis/scene/notifyHandlers scene-0
+/vis/filtering/trajectories/particleFilter-0/add gamma
+/vis/scene/notifyHandlers scene-0
+/vis/scene/endOfEventAction accumulate -1
+/vis/viewer/set/lightsMove camera
+/vis/viewer/refresh
+/vis/viewer/set/edge
+/vis/viewer/refresh
+/vis/viewer/set/culling global
+/vis/viewer/refresh
+/vis/viewer/set/culling coveredDaughters
+/vis/viewer/refresh
+/vis/viewer/set/hiddenEdge 0
+/vis/viewer/refresh
+/vis/viewer/set/auxiliaryEdge
+/vis/viewer/refresh
+/vis/geometry/set/forceWireframe World 0 1
+/vis/viewer/rebuild
+/vis/viewer/refresh
+/control/execute beam.mac
+/gps/particle e-
+/gps/pos/type Point
+/gps/pos/centre 0. 0. 5. cm
+/gps/direction 0. 0. -1.
+/gps/ang/type beam1d
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/point 0.001 0.85
+/gps/hist/point 0.1092 1
+/gps/hist/point 0.218 0.85
+/gps/hist/point 0.327 0.65
+/gps/hist/point 0.436 0.3
+/gps/hist/point 0.545 0
+/gps/hist/inter Lin
+/gps/source/add 1.0
+/gps/particle e-
+/gps/pos/type Point
+/gps/pos/centre 0. 0. 5. cm
+/gps/direction 0. 0. -1.
+/gps/ang/type beam1d
+/gps/ene/type Arb
+/gps/hist/type arb
+/gps/hist/point 0.004185 0.85
+/gps/hist/point 0.457037 1
+/gps/hist/point 0.9124 0.85
+/gps/hist/point 1.3686 0.65
+/gps/hist/point 1.8248 0.3
+/gps/hist/point 2.281 0
+/gps/hist/inter Lin
+/run/beamOn 1
+/run/beamOn 100

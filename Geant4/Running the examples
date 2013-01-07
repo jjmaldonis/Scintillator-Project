@@ -1,0 +1,8 @@
+In order to "make" the examples I must run the following two commands in the terminal each time:
+
+cd ~/geant4/geant4../
+source env.sh
+
+Then I can cd to the example directory i want and "make"
+
+**Now, I've made all of the novice examples already and moved them into the correct (i.e. their respective) folders so all I have to do now if cd into the example i want and type "./exampleN03" (for example) after I have set the environmental variables.

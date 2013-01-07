@@ -1,0 +1,6 @@
+cd /home/jason/geant4/geant4.9.4.p01
+./Configure -build
+
+
+G4OpenGLXViewer.cc
+http://geant4.slac.stanford.edu/tutorial/installation/Geant4.9.4.p01/Linux/Geant4_9_4_p01_Linux_Installation.htm#_What_are_the

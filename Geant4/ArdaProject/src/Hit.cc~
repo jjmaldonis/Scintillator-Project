@@ -1,0 +1,62 @@
+#include "Hit.hh"
+#include "G4UnitsTable.hh"
+#include "G4VVisManager.hh"
+#include "G4Circle.hh"
+#include "G4Color.hh"
+#include "G4VisAttributes.hh"
+
+G4Allocator<Hit> HitsAllocator;
+
+Hit::Hit()
+{
+	
+}
+
+Hit::~Hit()
+{
+	
+}
+
+Hit::Hit(const Hit& right):G4VHit()
+{
+	trackID = right.trackID;
+	chamberNb = right.chamberNb;
+	energyDep = right.energyDep;
+	pos = right.pos;
+}
+
+void Hit::Draw()
+{
+	G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
+	if (pVVisManager)
+	{
+		G4Circle circle(pos);
+		circle.SetScreenSize(2.*mm);
+		circle.SetFillStyle(G4Circle::filled);
+		G4Color color(1., 0.0, 0.0);
+		G4VisAttributes visAttr(color);
+		circle.SetVisAttributes(visAttr);
+		pVVisManager->Draw(circle);
+	}
+}
+
+void Hit::Print()
+{
+	G4cout << "  trackID: " << trackID << "  chamberNb: " << chamberNb
+				 << "  energy deposit: " << G4BestUnit(energyDep, "Energy")
+				 << "  position: " << G4BestUnit(pos, "Length") << G4endl;
+}
+
+const Hit& Hit::operator = (const Hit& right)
+{
+	trackID = right.trackID;
+	chamberNb = right.chamberNb;
+	energyDep = right.energyDep;
+	pos = right.pos;
+	return (*this);
+}
+
+G4int Hit::operator ==(const Hit& right) const
+{
+	return (this == &right) ? 1 : 0;
+}

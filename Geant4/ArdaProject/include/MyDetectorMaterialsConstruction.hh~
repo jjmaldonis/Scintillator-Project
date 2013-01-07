@@ -1,0 +1,39 @@
+/*
+	Construction of all necessary materials and geometry
+*/
+
+
+#include "G4VUserDetectorConstruction.hh"
+#include "globals.hh"
+
+class G4Box;
+class G4LogicalVolume;
+class G4VPhysicalVolume;
+class G4Material;
+
+
+
+
+class MyDetectorMaterialsConstruction : public G4VUserDetectorConstruction
+{
+	public:
+		DetectorConstruction();
+		~DetectorConstruction();
+			
+	public:
+		G4VPhysicalVolume* Construct();
+			
+	private:
+		G4VPhysicalVolume ConstructGeometry();
+		void DefineMaterials();
+	
+	private:
+		G4Box* solidWorld;
+		G4LogicalVolume* logicWorld;
+		G4VPhysicalVolume* physWorld;
+		
+		
+		
+	protected:
+		
+}

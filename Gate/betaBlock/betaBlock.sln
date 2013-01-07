@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "inc", "inc", "{B14FE7FA-4315-439F-BBAC-033296E9E080}"
+	ProjectSection(SolutionItems) = preProject
+		include\betaBlockDetectorConstruction.hh = include\betaBlockDetectorConstruction.hh
+		include\betaBlockDetectorSD.hh = include\betaBlockDetectorSD.hh
+		include\betaBlockEventAction.hh = include\betaBlockEventAction.hh
+		include\betaBlockOpticalPhysics.hh = include\betaBlockOpticalPhysics.hh
+		include\betaBlockPrimaryGeneratorAction.hh = include\betaBlockPrimaryGeneratorAction.hh
+		include\betaBlockRunAction.hh = include\betaBlockRunAction.hh
+		include\betaBlockStackingAction.hh = include\betaBlockStackingAction.hh
+		include\betaBlockSteppingAction.hh = include\betaBlockSteppingAction.hh
+		include\betaBlockSteppingVerbose.hh = include\betaBlockSteppingVerbose.hh
+		include\betaBlockTrackerHit.hh = include\betaBlockTrackerHit.hh
+		include\betaBlockTrackerSD.hh = include\betaBlockTrackerSD.hh
+		include\ptpProperties.hh = include\ptpProperties.hh
+		include\RootIO.hh = include\RootIO.hh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DEBBDE58-640D-42A4-985F-29FCBE47E73C}"
+	ProjectSection(SolutionItems) = preProject
+		betaBlock.cc = betaBlock.cc
+		src\betaBlockDetectorConstruction.cc = src\betaBlockDetectorConstruction.cc
+		src\betaBlockDetectorSD.cc = src\betaBlockDetectorSD.cc
+		src\betaBlockEventAction.cc = src\betaBlockEventAction.cc
+		src\betaBlockOpticalPhysics.cc = src\betaBlockOpticalPhysics.cc
+		src\betaBlockPrimaryGeneratorAction.cc = src\betaBlockPrimaryGeneratorAction.cc
+		src\betaBlockRunAction.cc = src\betaBlockRunAction.cc
+		src\betaBlockStackingAction.cc = src\betaBlockStackingAction.cc
+		src\betaBlockSteppingAction.cc = src\betaBlockSteppingAction.cc
+		src\betaBlockSteppingVerbose.cc = src\betaBlockSteppingVerbose.cc
+		src\betaBlockTrackerHit.cc = src\betaBlockTrackerHit.cc
+		src\betaBlockTrackerSD.cc = src\betaBlockTrackerSD.cc
+		src\RootIO.cc = src\RootIO.cc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "macros", "macros", "{6C96F210-4F6A-43A7-A300-A15190854957}"
+	ProjectSection(SolutionItems) = preProject
+		beam.mac = beam.mac
+		beam2.mac = beam2.mac
+		GNUmakefile = GNUmakefile
+		gui.mac = gui.mac
+		vis.mac = vis.mac
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,26 @@
+/*
+	Construction of all necessary materials and geometry
+*/
+
+
+#include "G4VUserDetectorConstruction.hh"
+#include "globals.hh"
+
+
+
+
+
+
+class MyDetectorParticleConstruction : public G4VUserDetectorConstruction
+{
+	public:
+		DetectorConstruction();
+		~DetectorConstruction();
+			
+	public:
+		
+			
+	private:
+			
+	protected:
+	
