@@ -1,0 +1,181 @@
+/vis/open                           OGLSX
+#/vix/viewer/reset
+/vis/viewer/set/viewpointThetaPhi   60 60
+/vis/viewer/zoom                    1.0 #was 6.0
+/vis/drawVolume
+/tracking/storeTrajectory           1
+/vis/scene/add/trajectories
+/vis/scene/endOfEventAction         accumulate
+
+/control/execute                    Verbose.mac
+
+/gate/geometry/setMaterialDatabase    ../../GateMaterials.db
+
+# World
+/gate/world/geometry/setXLength       100. cm
+/gate/world/geometry/setYLength       100. cm
+/gate/world/geometry/setZLength       100. cm
+/gate/world/setMaterial Vacuum
+
+# PMT
+/gate/world/daughters/name ecat
+/gate/world/daughters/insert box
+/gate/ecat/placement/setTranslation 0.0 0.0 -35.0 cm
+/gate/ecat/geometry/setXLength 30.0 cm
+/gate/ecat/geometry/setYLength 30.0 cm
+/gate/ecat/geometry/setZLength 30.0 cm
+/gate/ecat/setMaterial Water
+/gate/ecat/vis/forceWireframe
+
+# Scintillator
+/gate/ecat/daughters/name block
+/gate/ecat/daughters/insert box
+/gate/block/placement/setTranslation 0.0 0.0 20.0 cm
+/gate/block/geometry/setXLength 30.0 cm
+/gate/block/geometry/setYLength 30.0 cm
+/gate/block/geometry/setZLength 10.0 cm
+/gate/block/setMaterial LSO
+/gate/block/vis/forceWireframe
+
+# Attach System
+/gate/systems/ecat/block/attach crystal
+
+/gate/block/attachCrystalSD
+/gate/ecat/attachPhantomSD
+
+# Physics
+/gate/physics/addProcess PhotoElectric
+/gate/physics/processes/PhotoElectric/setModel StandardModel
+
+/gate/physics/addProcess Compton
+/gate/physics/processes/Compton/setModel StandardModel
+
+/gate/physics/addProcess RayleighScattering
+/gate/physics/processes/RayleighScattering/setModel PenelopeModel
+
+/gate/physics/addProcess ElectronIonisation
+/gate/physics/processes/ElectronIonisation/setModel StandardModel e-
+/gate/physics/processes/ElectronIonisation/setModel StandardModel e+
+
+/gate/physics/addProcess Bremsstrahlung
+/gate/physics/processes/Bremsstrahlung/setModel StandardModel e-
+/gate/physics/processes/Bremsstrahlung/setModel StandardModel e+
+
+/gate/physics/addProcess PositronAnnihilation
+
+/gate/physics/addProcess MultipleScattering e+
+/gate/physics/addProcess MultipleScattering e-
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+
+# CUTS
+/gate/physics/Gamma/SetCutInRegion      ecat 1.0 cm
+/gate/physics/Electron/SetCutInRegion   ecat 1.0 cm
+/gate/physics/Positron/SetCutInRegion   ecat 1.0 cm
+
+
+/gate/physics/Gamma/SetCutInRegion      block 0.1 mm
+/gate/physics/Electron/SetCutInRegion   block 0.1 mm
+/gate/physics/Positron/SetCutInRegion   block 0.1 mm
+
+/gate/physics/SetMaxStepSizeInRegion    block 0.01 mm
+
+# Initialize
+/gate/run/initialize
+
+
+
+#/gate/output/allowNoOutput
+
+# Adder
+/gate/digitizer/Singles/insert adder
+
+#       R E A D O U T
+/gate/digitizer/Singles/insert readout
+/gate/digitizer/Singles/readout/setDepth 1
+
+
+#      E N E R G Y   B L U R R I N G
+/gate/digitizer/Singles/insert blurring
+/gate/digitizer/Singles/blurring/setResolution 0.26
+/gate/digitizer/Singles/blurring/setEnergyOfReference 511. keV
+
+
+#       E N E R G Y   C U T
+/gate/digitizer/Singles/insert thresholder
+/gate/digitizer/Singles/thresholder/setThreshold 250. keV
+/gate/digitizer/Singles/insert upholder
+/gate/digitizer/Singles/upholder/setUphold 750. keV
+
+
+#       D E A D    T I M E
+/gate/digitizer/Singles/insert deadtime
+/gate/digitizer/Singles/deadtime/setDeadTime 3000000. ps
+/gate/digitizer/Singles/deadtime/setMode paralysable
+/gate/digitizer/Singles/deadtime/chooseDTVolume block
+
+
+#	C O I N C I    S O R T E R
+/gate/digitizer/Coincidences/setWindow 10. ns
+/gate/digitizer/Coincidences/setOffset 0. ns
+/gate/digitizer/Coincidences/describe
+
+/gate/digitizer/name delay
+/gate/digitizer/insert coincidenceSorter
+/gate/digitizer/delay/setWindow 10. ns
+/gate/digitizer/delay/setOffset 500. ns
+/gate/digitizer/delay/describe
+
+
+/gate/digitizer/name finalCoinc
+/gate/digitizer/insert coincidenceChain
+/gate/digitizer/finalCoinc/addInputName delay
+/gate/digitizer/finalCoinc/addInputName Coincidences
+/gate/digitizer/finalCoinc/usePriority true
+/gate/digitizer/finalCoinc/describe
+
+
+
+
+
+
+
+
+
+# Root Output
+/gate/output/root/enable
+/gate/output/root/setFileName ScintillationResults
+#/gate/output/root/setRootSinglesAdderFlag 1
+#/gate/output/root/setRootSinglesReadoutFlag 1
+/gate/output/root/setRootHitFlag 1
+#/gate/output/root/setRootSinglesFlag 1
+#/gate/output/root/setRootCoincidencesFlag 1
+
+
+# F A S T   P R O D U C T I O N   M O D U L E   F O R   F - 1 8   I S O T O P E S
+/gate/source/addSource F18CylinderSource
+/gate/source/F18CylinderSource/setActivity 				100. becquerel #Change the number of particles run here
+/gate/source/F18CylinderSource/gps/type       		Beam
+/gate/source/F18CylinderSource/gps/particle 			e+
+/gate/source/F18CylinderSource/gps/energy 				0.546 MeV #strontium beta emission energy
+/gate/source/F18CylinderSource/gps/direction 			0 0 -1
+/gate/source/F18CylinderSource/gps/position 			0 0 20 cm
+/gate/source/F18CylinderSource/setForcedUnstableFlag true
+/gate/source/F18CylinderSource/setForcedHalfLife 	6586 s
+/gate/source/F18CylinderSource/gps/type 					Volume
+/gate/source/F18CylinderSource/gps/shape 					Cylinder
+/gate/source/F18CylinderSource/gps/radius 				0.5 mm
+/gate/source/F18CylinderSource/gps/halfz 					0.5 mm
+/gate/source/F18CylinderSource/gps/centre 				0.0 0.0 20.0 cm
+
+# EXPERIMENT
+#
+/gate/application/setTimeSlice     1.  s
+/gate/application/setTimeStart     0.   s
+/gate/application/setTimeStop      1.  s
+
+#
+# LET'S RUN THE SIMULATION!
+#
+/gate/application/startDAQ

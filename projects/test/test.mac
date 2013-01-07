@@ -1,0 +1,201 @@
+# ============================
+# == VERBOSITY              ==
+# ============================
+/control/verbose          0
+/run/verbose              0
+/event/verbose            0
+
+# ============================
+# == VISUALISATION          ==
+# ============================
+/vis/disable
+/vis/open OGLSX
+/vis/viewer/set/viewpointThetaPhi 60 60
+/vis/viewer/zoom 8
+/vis/drawVolume
+/vis/viewer/flush
+/tracking/verbose 0
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories
+/vis/scene/endOfEventAction accumulate
+
+# ============================
+# == GEOMETRY               ==
+# ============================
+
+/gate/geometry/setMaterialDatabase GateMaterials.db
+
+# ==== world ====
+/gate/world/geometry/setXLength 40. cm
+/gate/world/geometry/setYLength 40. cm
+/gate/world/geometry/setZLength 40. cm
+/gate/world/setMaterial Vacuum
+
+# ==== detector ====
+# ===============================================
+#
+# Models an 9 by 9 array of LSO pixels on top of
+# an PMT. The pixels are 2x2x10 mm. The PMT has
+# a radius of 14 mm and a height of 50 mm. The
+# surface of the pixels is rough and the pixels
+# are clad in teflon. The surface between the
+# pixels and the PMT absorbs all light.
+#
+# ===============================================
+
+# === scanner === the outer white box
+# the scanner contains in this case one module,
+# but could contain for example a ring of
+# modules
+/gate/world/daughters/name              scanner
+/gate/world/daughters/insert            box
+/gate/scanner/geometry/setXLength       31.0 mm
+/gate/scanner/geometry/setYLength       31.0 mm
+/gate/scanner/geometry/setZLength       71.0 mm
+/gate/scanner/setMaterial               Vacuum #Air
+/gate/scanner/vis/forceWireframe        1
+
+# === module === the inner white box
+# the module contains the pixels and the PMT
+/gate/scanner/daughters/name            module
+/gate/scanner/daughters/insert          box
+/gate/module/geometry/setXLength        30.0 mm
+/gate/module/geometry/setYLength        30.0 mm
+/gate/module/geometry/setZLength        70.0 mm
+/gate/module/setMaterial                Vacuum #Air
+/gate/module/vis/forceWireframe         1
+
+/gate/systems/scanner/level1/attach     module
+
+# === pixels ===
+/gate/module/daughters/name             pixel
+/gate/module/daughters/insert           cylinder
+/gate/pixel/geometry/setRmax            14.0 mm
+/gate/pixel/geometry/setRmin            0    mm
+/gate/pixel/geometry/setHeight          10.0 mm
+/gate/pixel/setMaterial                 LSO
+/gate/pixel/placement/setTranslation    0 0 25 mm
+/gate/pixel/vis/setColor                red
+
+#/gate/module/daughters/name             pixel
+#/gate/module/daughters/insert           box
+#/gate/pixel/geometry/setXLength         2.0  mm
+#/gate/pixel/geometry/setYLength         2.0  mm
+#/gate/pixel/geometry/setZLength         10.0 mm
+#/gate/pixel/setMaterial                 LSO
+#/gate/pixel/placement/setTranslation    0 0 25 mm
+#/gate/pixel/vis/setColor                red
+
+#/gate/pixel/repeaters/insert            cubicArray
+#/gate/pixel/cubicArray/setRepeatNumberX 9
+#/gate/pixel/cubicArray/setRepeatNumberY 9
+#/gate/pixel/cubicArray/setRepeatNumberZ 1
+#/gate/pixel/cubicArray/setRepeatVector  2.1 2.1 0 mm
+
+/gate/pixel/attachCrystalSD
+/gate/systems/scanner/level2/attach     pixel
+
+# === PMT ===
+/gate/module/daughters/name             PMT
+/gate/module/daughters/insert           cylinder
+/gate/PMT/geometry/setRmax              14.0 mm
+/gate/PMT/geometry/setRmin              0    mm
+/gate/PMT/geometry/setHeight            50.0 mm
+/gate/PMT/setMaterial                   Water
+/gate/PMT/placement/setTranslation      0 0 -5 mm
+/gate/PMT/vis/setColor                  blue
+
+# === surfaces ===
+# here we define all surfaces that exist between
+# all the volumes.
+
+/gate/pixel/surfaces/name              teflonsurf
+/gate/pixel/surfaces/insert            module
+/gate/pixel/surfaces/teflonsurf/setSurface polished_teflon_wrapped
+
+/gate/pixel/surfaces/name               pmtsurf
+/gate/pixel/surfaces/insert             PMT
+/gate/pixel/surfaces/pmtsurf/setSurface perfect_apd
+
+
+
+# ============================
+# == PHYSICS                ==
+# ============================
+/gate/physics/addProcess PhotoElectric
+/gate/physics/processes/PhotoElectric/setModel StandardModel
+
+/gate/physics/addProcess Compton
+/gate/physics/processes/Compton/setModel PenelopeModel
+
+/gate/physics/addProcess RayleighScattering
+/gate/physics/processes/RayleighScattering/setModel PenelopeModel
+
+/gate/physics/addProcess ElectronIonisation
+/gate/physics/processes/ElectronIonisation/setModel StandardModel e-
+
+/gate/physics/addProcess Bremsstrahlung
+/gate/physics/processes/Bremsstrahlung/setModel StandardModel e-
+
+/gate/physics/addProcess MultipleScattering e-
+
+/gate/physics/addProcess Scintillation
+/gate/physics/addProcess OpticalRayleigh
+/gate/physics/addProcess OpticalAbsorption
+/gate/physics/addProcess OpticalBoundary
+
+/gate/physics/processList Enabled
+/gate/physics/processList Initialized
+
+
+# ============================
+# == INITIALIZE             ==
+# ============================
+
+
+/gate/run/initialize
+
+
+# ============================
+# == DIGITIZER              ==
+# ============================
+/gate/digitizer/Singles/insert  opticaladder
+/gate/digitizer/Singles/insert  readout
+/gate/digitizer/Singles/readout/setDepth 1
+
+# ============================
+# == SOURCE                 ==
+# ============================
+/gate/source/addSource                 beamsource
+/gate/source/beamsource/setActivity    1 becquerel
+/gate/source/beamsource/gps/particle   gamma
+/gate/source/beamsource/gps/energytype Mono
+/gate/source/beamsource/gps/monoenergy 511 keV
+/gate/source/beamsource/gps/type       Beam
+/gate/source/beamsource/gps/centre     0 0 -60 mm
+/gate/source/beamsource/gps/direction  0 0 1
+
+
+# ============================
+# == OUTPUT                 ==
+# ============================
+/gate/output/root/enable
+
+/gate/output/analysis/disable
+
+/gate/output/fastanalysis/enable
+
+# === ROOT ===
+/gate/output/root/setFileName gate
+/gate/output/root/setRootHitFlag           0
+/gate/output/root/setRootSinglesFlag       1
+
+# ============================
+# == START ACQUISITION      ==
+# ============================
+/gate/application/setTimeSlice 100 s #1000
+/gate/application/setTimeStart 0. s
+/gate/application/setTimeStop  100 s #1000
+/gate/application/startDAQ
+
+

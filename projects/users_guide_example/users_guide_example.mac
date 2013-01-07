@@ -1,0 +1,283 @@
+# No verbosity
+/control/verbose 0
+#
+# OpenGL online visualization
+/vis/open OGLSX
+/vis/viewer/reset
+/vis/viewer/set/style surface
+/vis/drawVolume
+/vis/scene/endOfEventAction accumulate
+/vis/viewer/set/viewpointThetaPhi 30 30
+/vis/viewer/zoom 2
+#
+
+/gate/geometry/setMaterialDatabase    ../../GateMaterials.db
+
+
+/tracking/storeTrajectory 1
+
+#   W O R L D
+/gate/world/geometry/setXLength 40 cm
+/gate/world/geometry/setYLength 40. cm
+/gate/world/geometry/setZLength 40. cm
+
+#   C Y L I N D R I C A L
+/gate/world/daughters/name cylindricalPET
+/gate/world/daughters/insert cylinder
+/gate/cylindricalPET/setMaterial Water
+/gate/cylindricalPET/geometry/setRmax 152 mm
+/gate/cylindricalPET/geometry/setRmin 130 mm
+/gate/cylindricalPET/geometry/setHeight 80 mm
+/gate/cylindricalPET/vis/forceWireframe
+
+#   R S E C T O R
+/gate/cylindricalPET/daughters/name box1
+/gate/cylindricalPET/daughters/insert box
+/gate/box1/placement/setTranslation 140 0 0 mm
+/gate/box1/geometry/setXLength 20. mm
+/gate/box1/geometry/setYLength 19. mm
+/gate/box1/geometry/setZLength 76.6 mm
+/gate/box1/setMaterial Water
+/gate/box1/vis/forceWireframe
+#
+#   M O D U L E
+/gate/box1/daughters/name box2
+/gate/box1/daughters/insert box
+/gate/box2/geometry/setXLength 20. mm
+/gate/box2/geometry/setYLength 19. mm
+/gate/box2/geometry/setZLength 19. mm
+/gate/box2/setMaterial Water
+/gate/box2/vis/forceWireframe
+#
+#   C R Y S T A L
+/gate/box2/daughters/name box3
+/gate/box2/daughters/insert box
+/gate/box3/geometry/setXLength 20. mm
+/gate/box3/geometry/setYLength 2.2 mm
+/gate/box3/geometry/setZLength 2.2 mm
+/gate/box3/setMaterial Water
+/gate/box3/vis/forceWireframe
+#
+#   L A Y E R LSO
+/gate/box3/daughters/name LSO
+/gate/box3/daughters/insert box
+/gate/LSO/geometry/setXLength 10. mm
+/gate/LSO/geometry/setYLength 2.2 mm
+/gate/LSO/geometry/setZLength 2.2 mm
+/gate/LSO/placement/setTranslation -5 0 0 mm
+/gate/LSO/setMaterial LSO
+#
+#   L A Y E R LuAP
+/gate/box3/daughters/name LuAP
+/gate/box3/daughters/insert box
+/gate/LuAP/geometry/setXLength 10. mm
+/gate/LuAP/geometry/setYLength 2. mm
+/gate/LuAP/geometry/setZLength 2. mm
+/gate/LuAP/placement/setTranslation 5 0 0 mm
+/gate/LuAP/setMaterial LuAP
+/gate/LuAP/vis/setColor cyan
+#
+#   R E P E A T   C R Y S T A L
+/gate/box3/repeaters/insert cubicArray
+/gate/box3/cubicArray/setRepeatNumberX 1
+/gate/box3/cubicArray/setRepeatNumberY 8
+/gate/box3/cubicArray/setRepeatNumberZ 8
+/gate/box3/cubicArray/setRepeatVector 10. 2.4 2.4 mm
+#
+#   R E P E A T   M O D U L E
+/gate/box2/repeaters/insert cubicArray
+/gate/box2/cubicArray/setRepeatNumberZ 4
+/gate/box2/cubicArray/setRepeatVector 0. 0. 19.2 mm
+#
+#   R E P E A T   R S E C T O R
+/gate/box1/repeaters/insert ring
+/gate/box1/ring/setRepeatNumber 42
+#
+#   A T T A C H   S Y S T E M
+/gate/systems/cylindricalPET/rsector/attach box1
+/gate/systems/cylindricalPET/module/attach box2
+/gate/systems/cylindricalPET/crystal/attach box3
+/gate/systems/cylindricalPET/layer0/attach LSO
+/gate/systems/cylindricalPET/layer1/attach LuAP
+
+
+#   A T T A C H   L A Y E R SD
+/gate/LSO/attachCrystalSD
+/gate/LuAP/attachCrystalSD
+#
+#   P H A N T O M
+/gate/world/daughters/name phantom
+/gate/world/daughters/insert cylinder
+/gate/phantom/geometry/setRmax 20 mm
+/gate/phantom/geometry/setRmin 0. mm
+/gate/phantom/geometry/setHeight 100. mm
+/gate/phantom/placement/setTranslation 0 0 -40 mm
+/gate/phantom/setMaterial Water
+/gate/phantom/vis/setColor red
+#
+#   A T T A C H   P H A N T O M S D
+/gate/phantom/attachPhantomSD
+
+
+#   M O V E M E N T S
+/gate/cylindricalPET/moves/name revolution
+/gate/cylindricalPET/moves/insert rotation
+/gate/cylindricalPET/revolution/setAxis 0 0 1
+/gate/cylindricalPET/revolution/setSpeed 6. deg/s
+#
+/gate/phantom/moves/name PhantomTranslation
+/gate/phantom/moves/insert translation
+/gate/phantom/PhantomTranslation/setSpeed 0. 0. 0.1 cm/s
+#
+# The lines below are just to show how the system moves with time
+#/gate/timing/setTime 0. s
+#/gate/timing/setTime 5. s
+#/gate/timing/setTime 10. s
+#/gate/timing/setTime 15. s
+#/gate/timing/setTime 20. s
+#/gate/timing/setTime 25. s
+#/gate/timing/setTime 30. s
+#/gate/timing/setTime 35. s
+#/gate/timing/setTime 40. s
+#/gate/timing/setTime 45. s
+#/gate/timing/setTime 50. s
+#/gate/timing/setTime 55. s
+#/gate/timing/setTime 60. s
+
+
+#   D I G I T I Z E R
+/gate/digitizer/convertor/verbose 0
+/gate/digitizer/Singles/insert adder
+/gate/digitizer/Singles/adder/verbose 0
+#
+#   ENERGY BLURRING
+/gate/digitizer/Singles/insert crystalblurring
+/gate/digitizer/Singles/crystalblurring/setCrystalResolutionMin 0.20
+/gate/digitizer/Singles/crystalblurring/setCrystalResolutionMax 0.35
+/gate/digitizer/Singles/crystalblurring/setCrystalQE 1.
+/gate/digitizer/Singles/crystalblurring/setCrystalEnergyOfReference 511. keV
+#
+#   READOUT
+/gate/digitizer/Singles/insert readout
+/gate/digitizer/Singles/readout/setDepth 1
+#
+#   TEMPORAL RESOLUTION
+/gate/digitizer/Singles/insert timeResolution
+/gate/digitizer/Singles/timeResolution/setTimeResolution 2. ns
+#
+#   THRESHOLDER / UPHOLDER
+/gate/digitizer/Singles/insert thresholder
+/gate/digitizer/Singles/thresholder/setThreshold 250. keV
+/gate/digitizer/Singles/insert upholder
+/gate/digitizer/Singles/upholder/setUphold 750. keV
+/gate/digitizer/Singles/thresholder/verbose 0
+#
+#   DEAD TIME
+/gate/digitizer/Singles/insert deadtime
+/gate/digitizer/Singles/deadtime/setDeadTime 250. ns
+/gate/digitizer/Singles/deadtime/setMode paralysable
+/gate/digitizer/Singles/deadtime/chooseDTVolume box1
+#
+#   COINCIDENCES SORTER
+/gate/digitizer/Coincidences/setWindow 10. ns
+/gate/digitizer/Coincidences/minSectorDifference 2
+#
+#
+/gate/systems/cylindricalPET/describe
+
+
+#   P H Y S I C S
+#/gate/physics/gamma/selectCompton lowenergy
+#/gate/physics/gamma/selectPhotoelectric lowenergy
+#/gate/physics/gamma/selectRayleigh lowenergy
+#
+#   INACTIVE COMPTON
+#/gate/physics/gamma/selectCompton inactive
+#
+#   CUT X , DELTA AND ELECTRON
+#/gate/physics/setXRayCut 1 GeV
+#/gate/physics/setDeltaRayCut 1 GeV
+#/gate/physics/setElectronCut 1 km
+
+
+#   I N I T I A L I Z E
+/gate/systems/cylindricalPET/verbose 0
+#/gate/geometry/enableAutoUpdate
+/gate/run/initialize
+
+
+/geometry/test/recursive_test
+#
+#   V E R B O S I T Y
+/control/verbose 0
+#/grdm/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/gate/application/verbose 0
+/gate/generator/verbose 0
+#/stacking/verbose 0
+/event/verbose 0
+/gate/source/verbose 0
+#
+#   S O U R C E S
+/gate/source/addSource twogamma
+/gate/source/twogamma/setActivity 1000. becquerel
+/gate/source/twogamma/setType backtoback
+/gate/source/twogamma/gps/particle gamma
+/gate/source/twogamma/gps/energytype Mono
+/gate/source/twogamma/gps/monoenergy 0.511 MeV
+/gate/source/twogamma/gps/centre 0. 2. 0. cm
+/gate/source/twogamma/gps/type Volume
+/gate/source/twogamma/gps/shape Sphere
+/gate/source/twogamma/gps/radius 0.5 cm
+/gate/source/twogamma/gps/shape Cylinder
+/gate/source/twogamma/gps/radius 10. mm
+/gate/source/twogamma/gps/halfz 50. mmv
+/gate/source/twogamma/gps/confine phantom
+/gate/source/twogamma/gps/angtype iso
+/gate/source/twogamma/gps/mintheta 0. deg
+/gate/source/twogamma/gps/maxtheta 180. deg
+/gate/source/twogamma/gps/minphi 0. deg
+/gate/source/twogamma/gps/maxphi 360. deg
+#
+/gate/source/addSource sourceC11
+/gate/source/sourceC11/setActivity 10000. becquerel
+/gate/source/sourceC11/gps/particle e+
+/gate/source/sourceC11/setForcedUnstableFlag true
+/gate/source/sourceC11/setForcedHalfLife 1223 s
+/gate/source/sourceC11/gps/energytype Carbon11
+/gate/source/sourceC11/gps/centre 0. 0. 0. cm
+/gate/source/sourceC11/gps/type Volume
+/gate/source/sourceC11/gps/shape Cylinder
+/gate/source/sourceC11/gps/radius 10. mm
+/gate/source/sourceC11/gps/halfz 50. mm
+/gate/source/sourceC11/gps/confine phantom
+/gate/source/sourceC11/gps/angtype iso
+#
+/gate/source/list
+
+
+#   O U T P U T
+#   ASCII
+/gate/output/ascii/disable
+/gate/output/ascii/setOutFileHitsFlag 0
+/gate/output/ascii/setOutFileSinglesFlag 0
+/gate/output/ascii/setOutFileCoincidencesFlag 0
+#
+#   ROOT
+/gate/output/root/enable
+/gate/output/root/setFileName root_output
+/gate/output/root/setRootNtupleFlag 1
+/gate/output/root/setRootHitFlag 0
+/gate/output/root/setRootSinglesFlag 1
+/gate/output/root/setRootCoincidencesFlag 1
+/gate/output/root/setSaveRndmFlag 1
+#   LMF
+/gate/output/lmf/disable
+#
+#   S T A R T
+/gate/application/setTimeSlice 1. s
+/gate/application/setTimeStart 0. s
+/gate/application/setTimeStop 60. s
+/gate/application/startDAQ
