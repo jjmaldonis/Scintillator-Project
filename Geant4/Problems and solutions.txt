@@ -1,0 +1,2 @@
+
+If Geant4 is giving a missing libG4Tree.so file, type "source env.sh" while in the geant4/geant4... folder
